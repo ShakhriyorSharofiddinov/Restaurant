@@ -1,0 +1,17 @@
+{
+  "meals": "Meals",
+  "salads": "Salades",
+  "drinks": "Drinks",
+  "fast_foods": "Fast foods",
+  "appBarText": "We are very happy that you chose\nour restaurant, thanks for visiting!",
+  "time": "min",
+  "ing": "ing",
+  "calorie": "cal",
+  "cost": "Price:",
+  "currency": "$",
+  "button_name": "More",
+  "ingredient": "Ingredients",
+  "ingredient_name": "Cornmeal",
+  "shop_name": "Shopping cart",
+  "delete_name": "Delete All"
+}
