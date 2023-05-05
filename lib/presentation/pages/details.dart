@@ -157,7 +157,7 @@ class _DetailsPageState extends State<DetailsPage> {
                   SizedBox(
                     height: 16,
                     child:
-                        Image.asset("assets/information_logos/energy_logo.png"),
+                    Image.asset("assets/information_logos/energy_logo.png"),
                   ),
                   const SizedBox(width: 4),
                   Padding(
@@ -224,29 +224,7 @@ class _DetailsPageState extends State<DetailsPage> {
               color: Color(0xff52616B),
             ),
           ),
-          const Spacer(),
-          Container(
-            alignment: Alignment.center,
-            padding: const EdgeInsets.only(bottom: 20),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xff2A5270),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(24),
-                )
-              ),
-              onPressed: () {
-                setState(() {
-                  final langProvider = Provider.of<LangProvider>(context, listen: false);
-                  langProvider.isItemSelected(false);
-                });
-              },
-              child: const Icon(
-                Icons.chevron_left,
-                size: 36,
-              ),
-            ),
-          ),
+
 
           /// ingredients of product
           // Row(

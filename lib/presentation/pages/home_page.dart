@@ -39,70 +39,72 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final favProvider = Provider.of<FavouriteProvider>(context, listen: false);
     return Consumer<LangProvider>(builder: (context, data, child) {
-      return Scaffold(
-        body: Row(
-          children: [
-            LayoutBuilder(builder: (context, constraint) {
-              return SingleChildScrollView(
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(minHeight: constraint.maxHeight),
-                  child: IntrinsicHeight(
-                    child: NavigationRail(
-                      leading: langBuild(),
-                      onDestinationSelected: (int index) {
-                        setState(() {
-                          _selectedIndex = index;
-                          favProvider.isSelectedFavPage(false);
-                        });
-                      },
-                      unselectedLabelTextStyle: const TextStyle(
-                        fontSize: 18,
-                        color: Colors.white54,
+      return SafeArea(
+        child: Scaffold(
+          body: Row(
+            children: [
+              LayoutBuilder(builder: (context, constraint) {
+                return SingleChildScrollView(
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(minHeight: constraint.maxHeight),
+                    child: IntrinsicHeight(
+                      child: NavigationRail(
+                        leading: langBuild(),
+                        onDestinationSelected: (int index) {
+                          setState(() {
+                            _selectedIndex = index;
+                            favProvider.isSelectedFavPage(false);
+                          });
+                        },
+                        unselectedLabelTextStyle: const TextStyle(
+                          fontSize: 18,
+                          color: Colors.white54,
+                        ),
+                        selectedLabelTextStyle: const TextStyle(
+                          fontSize: 24,
+                          color: Colors.white,
+                        ),
+                        labelType: NavigationRailLabelType.all,
+                        backgroundColor: const Color(0xff2A5270),
+                        selectedIndex: _selectedIndex,
+                        destinations: [
+                          NavigationRailDestination(
+                              icon: const SizedBox(),
+                              label: RotatedBox(
+                                quarterTurns: -1,
+                                child: Text("meals".tr()),
+                              )),
+                          NavigationRailDestination(
+                              icon: const SizedBox(),
+                              label: RotatedBox(
+                                quarterTurns: -1,
+                                child: Text("salads".tr()),
+                              )),
+                          NavigationRailDestination(
+                              icon: const SizedBox(),
+                              label: RotatedBox(
+                                quarterTurns: -1,
+                                child: Text("drinks".tr()),
+                              )),
+                          NavigationRailDestination(
+                              icon: const SizedBox(),
+                              label: RotatedBox(
+                                quarterTurns: -1,
+                                child: Text("fast_foods".tr()),
+                              )),
+                        ],
                       ),
-                      selectedLabelTextStyle: const TextStyle(
-                        fontSize: 24,
-                        color: Colors.white,
-                      ),
-                      labelType: NavigationRailLabelType.all,
-                      backgroundColor: const Color(0xff2A5270),
-                      selectedIndex: _selectedIndex,
-                      destinations: [
-                        NavigationRailDestination(
-                            icon: const SizedBox(),
-                            label: RotatedBox(
-                              quarterTurns: -1,
-                              child: Text("meals".tr()),
-                            )),
-                        NavigationRailDestination(
-                            icon: const SizedBox(),
-                            label: RotatedBox(
-                              quarterTurns: -1,
-                              child: Text("salads".tr()),
-                            )),
-                        NavigationRailDestination(
-                            icon: const SizedBox(),
-                            label: RotatedBox(
-                              quarterTurns: -1,
-                              child: Text("drinks".tr()),
-                            )),
-                        NavigationRailDestination(
-                            icon: const SizedBox(),
-                            label: RotatedBox(
-                              quarterTurns: -1,
-                              child: Text("fast_foods".tr()),
-                            )),
-                      ],
                     ),
                   ),
-                ),
-              );
-            }),
-            Expanded(
-              child: favProvider.getSelectedFavPage()
-                  ? FavouritePage()
-                  : _pages[_selectedIndex],
-            ),
-          ],
+                );
+              }),
+              Expanded(
+                child: favProvider.getSelectedFavPage()
+                    ? FavouritePage()
+                    : _pages[_selectedIndex],
+              ),
+            ],
+          ),
         ),
       );
     });

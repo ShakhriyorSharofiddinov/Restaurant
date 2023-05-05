@@ -52,7 +52,7 @@ class _DrinksPageState extends State<DrinksPage> {
       axisCount = 4;
     }
     return Padding(
-      padding: const EdgeInsets.only(left: 20, top: 40),
+      padding: const EdgeInsets.only(left: 20, top: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

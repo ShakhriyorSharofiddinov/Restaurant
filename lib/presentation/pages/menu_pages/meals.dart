@@ -16,31 +16,28 @@ class MealsPage extends StatefulWidget {
 }
 
 class _MealsPageState extends State<MealsPage> {
+  bool _isProductSelected = false;
   int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    final langProvider = Provider.of<LangProvider>(context, listen: false);
-    return Consumer<LangProvider>(builder: (context, data, child) {
-      return langProvider.getItemSelected()
+    return WillPopScope(
+        onWillPop: () {
+          _isProductSelected
+              ? setState(() {
+            _isProductSelected = false;
+          })
+              : exit(0);
+          return Future.value(false);
+        }, child: Consumer<LangProvider>(builder: (context, data, child) {
+      return _isProductSelected
           ? DetailsPage(_selectedIndex)
           : Scaffold(body: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
             return menuUI(constraints);
           }));
-    }
-    );
+    }));
   }
-  // WillPopScope(onWillPop: () {
-  //       _isProductSelected
-  //           ? setState(() {
-  //               _isProductSelected = false;
-  //             })
-  //           : exit(0);
-  //       return Future.value(false);
-  //     },
-  //         child: );
-
 
   Widget menuUI(BoxConstraints constraints) {
 
@@ -56,7 +53,7 @@ class _MealsPageState extends State<MealsPage> {
       axisCount = 4;
     }
     return Padding(
-      padding: const EdgeInsets.only(left: 20, top: 40),
+      padding: const EdgeInsets.only(left: 20, top: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -283,11 +280,9 @@ class _MealsPageState extends State<MealsPage> {
                           var newList = List.of(favList);
                           if( !newList.contains(product.id!-1)){
                             newList.add(product.id!-1);
+                            favProvider.isSelectProduct(true);
                           }
                           favProvider.setFavList(newList);
-                          setState(() {
-                            favProvider.isSelectProduct(true);
-                          });
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor:
@@ -307,8 +302,7 @@ class _MealsPageState extends State<MealsPage> {
                       ElevatedButton(
                           onPressed: () {
                             setState(() {
-                              final langProvider = Provider.of<LangProvider>(context, listen: false);
-                              langProvider.isItemSelected(true);
+                              _isProductSelected = true;
                               _selectedIndex = product.id!-1;
                             });
                           },
