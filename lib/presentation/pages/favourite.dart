@@ -19,7 +19,7 @@ class FavouritePage extends StatefulWidget {
 
 class _FavouritePageState extends State<FavouritePage> {
 
-  double billProducts = 1000000;
+  double billProducts = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -186,6 +186,7 @@ class _FavouritePageState extends State<FavouritePage> {
                   splashColor: Colors.transparent,
                   onTap: (){
                     setState(() {
+
                     });
                   },
                   child: const Icon(
