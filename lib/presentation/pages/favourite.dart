@@ -95,10 +95,10 @@ class _FavouritePageState extends State<FavouritePage> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("total_amount".tr(), style: const TextStyle(fontSize: 20),),
+                                Text("total_amount".tr(), style: const TextStyle(fontSize: 18),),
                                 Row(
                                   children: [
-                                    Text("$billProducts",style: const TextStyle(fontSize: 16),),
+                                    Text("$billProducts",style: const TextStyle(fontSize: 14),),
                                     const  SizedBox(width: 4,),
                                     Text("currency".tr()),
                                   ],

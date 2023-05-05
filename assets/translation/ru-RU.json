@@ -13,6 +13,8 @@
   "ingredient": "Ингредиенты",
   "ingredient_name": "Кукурузная мука",
   "shop_name": "Ваше корзина",
-  "delete_name": "Стереть корзину"
+  "delete_name": "Стереть корзину",
+  "total_amount": "Общая сумма:",
+  "delivery": "Доставка"
 
 }

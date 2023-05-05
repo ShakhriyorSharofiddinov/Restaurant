@@ -13,5 +13,8 @@
   "ingredient": "Ingredients",
   "ingredient_name": "Cornmeal",
   "shop_name": "Shopping cart",
-  "delete_name": "Delete All"
+  "delete_name": "Delete All",
+  "total_amount": "Total amount:",
+  "delivery": "Delivery"
+
 }

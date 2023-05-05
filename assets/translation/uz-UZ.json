@@ -13,5 +13,8 @@
   "ingredient": "Tarkibi",
   "ingredient_name": "Makkajo'xori uni",
   "shop_name": "Korzinka",
-  "delete_name": "Hammasi tozlash"
+  "delete_name": "Hammasi tozlash",
+  "total_amount": "Umumiy hisob:",
+  "delivery": "Buyurtma berish"
+
 }
