@@ -9,6 +9,15 @@ class FavouriteProvider extends ChangeNotifier {
 
   bool _isSelectFavPage = false;
   bool _isSelectProduct = false;
+  double billProducts = 0;
+
+
+  void increment(double bill) {
+    billProducts = bill;
+    notifyListeners();
+  }
+
+  double get getBill => billProducts;
 
   void isSelectedFavPage(value){
     _isSelectFavPage = value;
@@ -49,12 +58,13 @@ class FavouriteProvider extends ChangeNotifier {
     );
   }
 
-
   Future<List<int>> getFavList() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List<String>? res = prefs.getStringList(Constants.Fav_products);
     if (res != null) {
-      return res.map((e) => int.parse(e)).toList();
+      List<int> list = res.map((e) => int.parse(e)).toList();
+      list.sort();
+      return list;
     }
     return List.empty();
   }

@@ -110,9 +110,7 @@ class _MealsPageState extends State<MealsPage> {
     }
   }
 
-
-  // Meal of card
-  Widget productCard(Product product, index) {
+  Widget productCard(Product product, int index){
     final favProvider = Provider.of<FavouriteProvider>(context, listen: false);
     return Stack(
       alignment: Alignment.center,
@@ -286,7 +284,7 @@ class _MealsPageState extends State<MealsPage> {
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor:
-                              const Color(0xff2A5270).withOpacity(0.3),
+                          const Color(0xff2A5270).withOpacity(0.3),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
@@ -337,4 +335,5 @@ class _MealsPageState extends State<MealsPage> {
       ],
     );
   }
+
 }
