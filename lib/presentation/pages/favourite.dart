@@ -110,7 +110,7 @@ class _FavouritePageState extends State<FavouritePage> {
                         builder: (context, snapshot) {
                           int counterProduct = 0;
                           if (snapshot.data!.isEmpty) {
-                            return Center(
+                            return const Center(
                               child: Image(
                                 image: AssetImage("assets/nodata.jpg"),
                               ),
