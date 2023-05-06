@@ -18,27 +18,26 @@ class FavouritePage extends StatefulWidget {
 }
 
 class _FavouritePageState extends State<FavouritePage> {
-
-  int getCounter(int number, List<int> list ){
+  int getCounter(int number, List<int> list) {
     int count = 0;
-    for(var element in list){
-      if(element == number){
+    for (var element in list) {
+      if (element == number) {
         count++;
       }
     }
     return count;
   }
 
-  int getAnotherProduct(int number, List<int> list ){
+  int getAnotherProduct(int number, List<int> list) {
     int count = 0;
     int answer = 0;
-    if(number == 0){
+    if (number == 0) {
       answer = list[0];
     }
     for (int i = 1; i < list.length; i++) {
       if (list[i - 1] != list[i]) {
         count++;
-        if(count == number){
+        if (count == number) {
           answer = list[i];
           break;
         }
@@ -52,16 +51,17 @@ class _FavouritePageState extends State<FavouritePage> {
     final favProvider = Provider.of<FavouriteProvider>(context, listen: false);
     return Consumer<LangProvider>(builder: (context, data, child) {
       return WillPopScope(
-          onWillPop: () {
-            favProvider.getSelectedFavPage()
-                ? setState(() {
-                    favProvider.isSelectedFavPage(false);
-                  })
-                : exit(0);
-            return Future.value(false);
-          },
-          child: Scaffold(
-              body: SafeArea(
+        onWillPop: () {
+          favProvider.getSelectedFavPage()
+              ? setState(() {
+                  favProvider.isSelectedFavPage(false);
+                })
+              : exit(0);
+          return Future.value(false);
+        },
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          body: SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(12.0),
               child: Column(
@@ -110,11 +110,11 @@ class _FavouritePageState extends State<FavouritePage> {
                         builder: (context, snapshot) {
                           int counterProduct = 0;
                           if (snapshot.data!.isEmpty) {
-                            return const Center(
-                                child: Icon(
-                                  Icons.hourglass_empty,
-                                  size: 40,
-                                ));
+                            return Center(
+                              child: Image(
+                                image: AssetImage("assets/nodata.jpg"),
+                              ),
+                            );
                           } else {
                             for (int i = 1; i < snapshot.data!.length; i++) {
                               if (getProducts()[snapshot.data![i - 1]].id !=
@@ -126,11 +126,15 @@ class _FavouritePageState extends State<FavouritePage> {
                             return ListView.builder(
                                 itemCount: counterProduct,
                                 itemBuilder: (BuildContext context, int index) {
-                                  int counter = getCounter(getAnotherProduct(index, snapshot.data!), snapshot.data!);
+                                  int counter = getCounter(
+                                      getAnotherProduct(index, snapshot.data!),
+                                      snapshot.data!);
                                   // favProvider.increment(getProducts()[getAnotherProduct(index, snapshot.data!)].cost! * counter);
                                   return productCard(
-                                      getProducts()[getAnotherProduct(index, snapshot.data!)],
-                                      getAnotherProduct(index, snapshot.data!),counter);
+                                      getProducts()[getAnotherProduct(
+                                          index, snapshot.data!)],
+                                      getAnotherProduct(index, snapshot.data!),
+                                      counter);
                                 });
                           }
                         }),
@@ -187,7 +191,9 @@ class _FavouritePageState extends State<FavouritePage> {
                 ],
               ),
             ),
-          )));
+          ),
+        ),
+      );
     });
   }
 
@@ -231,12 +237,10 @@ class _FavouritePageState extends State<FavouritePage> {
                   onTap: () async {
                     List<int> favList = await favProvider.getFavList();
                     var newList = List.of(favList);
-                    newList.remove(product.id!-1);
+                    newList.remove(product.id! - 1);
                     favProvider.setFavList(newList);
 
-                    setState(() {
-
-                    });
+                    setState(() {});
                   },
                   child: const SizedBox(
                       width: 20,
@@ -251,11 +255,9 @@ class _FavouritePageState extends State<FavouritePage> {
                   onTap: () async {
                     List<int> favList = await favProvider.getFavList();
                     var newList = List.of(favList);
-                    newList.add(product.id!-1);
+                    newList.add(product.id! - 1);
                     favProvider.setFavList(newList);
-                    setState(() {
-
-                    });
+                    setState(() {});
                   },
                   child: const Icon(
                     Icons.add_circle,
