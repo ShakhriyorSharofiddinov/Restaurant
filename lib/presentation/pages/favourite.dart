@@ -18,6 +18,7 @@ class FavouritePage extends StatefulWidget {
 }
 
 class _FavouritePageState extends State<FavouritePage> {
+
   int getCounter(int number, List<int> list) {
     int count = 0;
     for (var element in list) {
@@ -109,13 +110,7 @@ class _FavouritePageState extends State<FavouritePage> {
                         future: favProvider.getFavList(),
                         builder: (context, snapshot) {
                           int counterProduct = 0;
-                          if (snapshot.data!.isEmpty) {
-                            return const Center(
-                              child: Image(
-                                image: AssetImage("assets/nodata.jpg"),
-                              ),
-                            );
-                          } else {
+                          if (snapshot.hasData && snapshot.data!.isNotEmpty) {
                             for (int i = 1; i < snapshot.data!.length; i++) {
                               if (getProducts()[snapshot.data![i - 1]].id !=
                                   getProducts()[snapshot.data![i]].id) {
@@ -137,6 +132,11 @@ class _FavouritePageState extends State<FavouritePage> {
                                       counter);
                                 });
                           }
+                          return const Center(
+                            child: Image(
+                              image: AssetImage("assets/nodata.jpg"),
+                            ),
+                          );
                         }),
                   ),
                   Padding(
