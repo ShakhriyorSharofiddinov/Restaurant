@@ -100,7 +100,7 @@ class _HomePageState extends State<HomePage> {
               }),
               Expanded(
                 child: favProvider.getSelectedFavPage()
-                    ? FavouritePage()
+                    ? const FavouritePage()
                     : _pages[_selectedIndex],
               ),
             ],
